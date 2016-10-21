@@ -14,7 +14,7 @@ public class Processo2 extends Thread{
 						|| (parouNoMeio == true) )
 				{	
 					parouNoMeio = true;
-					System.out.println("AQUI2");
+					//System.out.println("AQUI2");
 					System.out.println("Avenidas 2 e 3 liberadas -> Avenida 1 bloqueada");
 					System.out.println("A avenida 2 sera liberada por " + ControlePrincipal.vezes2 + " segundos");
 					System.out.println("A avenida 3 sera liberada por " + ControlePrincipal.vezes3 + " segundos\n");
@@ -37,9 +37,11 @@ public class Processo2 extends Thread{
 						}
 					}
 					
-					ControlePrincipal.cruzamento1.liberaSemaforo(2);
-					ControlePrincipal.cruzamento2.liberaSemaforo(3);
-					parouNoMeio = false; 
+					//System.out.println("ANTES2");
+					if ( (ControlePrincipal.cruzamento1.liberaSemaforo(2) == true)
+							&&	(ControlePrincipal.cruzamento2.liberaSemaforo(3) == true) )
+						parouNoMeio = false;
+					
 					}
 				}
 			catch (InterruptedException e)

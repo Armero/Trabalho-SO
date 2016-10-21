@@ -4,6 +4,7 @@ public class Cruzamento1 {
 	private static  Semaphore 		semaforo1		= new Semaphore(1);
 	private static boolean[] 		vez				= new boolean[2];
 	private static int 				idUltimo 		= 0;
+	public  boolean					acabou			= true;
 	
 	synchronized public boolean getCruzamento( String idAvenida, int idNum )
 	{
@@ -29,22 +30,26 @@ public class Cruzamento1 {
 			
 	}
 	
-	synchronized public void liberaSemaforo( int idNum )
+	//synchronized public void liberaSemaforo( int idNum )
+	public boolean liberaSemaforo( int idNum )
 	{
-		System.out.println("idUltimo: " + (idUltimo+1) );
+		//System.out.println("idUltimo: " + (idUltimo+1) );
 		if ( (idNum - 1) == idUltimo)
 		{
-			System.out.println("Cruzamento1 liberado pela avenida" + idNum);
+			//System.out.println("Cruzamento1 liberado pela avenida" + idNum);
 			
-			System.out.println("Vez 0, 1 " + vez[0] + " " + vez[1]);
+			//System.out.println("Vez 0, 1 " + vez[0] + " " + vez[1]);
 			
 			if ( (vez[0] == true) && (vez[1] == true) )
 			{
 				vez[0] = false;	
 				vez[1] = false;
+				acabou = true;
 			}
 			
 			semaforo1.release();
+			return (true);
 		}
+		return (false);
 	}
 }

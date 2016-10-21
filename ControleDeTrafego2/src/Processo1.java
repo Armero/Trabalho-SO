@@ -37,10 +37,10 @@ public class Processo1 extends Thread{
 						}
 					}
 					
-					ControlePrincipal.cruzamento1.liberaSemaforo(1);
-					ControlePrincipal.cruzamento2.liberaSemaforo(1);
-					parouNoMeio = false;
-					System.out.println("AQUI");
+					if ( (ControlePrincipal.cruzamento1.liberaSemaforo(1) == true)
+						&&	(ControlePrincipal.cruzamento2.liberaSemaforo(1) == true) )
+							parouNoMeio = false;
+
 				}
 			}
 			catch (InterruptedException e) 

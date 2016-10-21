@@ -12,13 +12,13 @@ public class ControlePrincipal
 	
 	//CONSTANTES
 	//Fluxo de carros nas avenidas
-	private static final int FLUXO_AV_1 = 10;
-	private static final int FLUXO_AV_2 = 10;
-	private static final int FLUXO_AV_3 = 10;
+	private static final int FLUXO_AV_1 = 50;
+	private static final int FLUXO_AV_2 = 30;
+	private static final int FLUXO_AV_3 = 20;
 	
 	//Fator multiplicador para a distribuicao de tempo
-	private static final int FATOR1 = 10;
-	private static final int FATOR2 = 10;
+	private static final int FATOR1 = 60;
+	private static final int FATOR2 = 30;
 	private static final int FATOR3 = 10;
 	
 	//controles dos tempos de exibicao do programa
@@ -33,25 +33,32 @@ public class ControlePrincipal
 	
 	private static void controladorDeTrafego ()
 	{
-	  double peso = 0.0;
-	    
-	   carrosVindo[0]+= (int) (Math.random()*FLUXO_AV_1); //av1
-	   carrosVindo[1]+= (int) (Math.random()*FLUXO_AV_2); //rua2    
-	   carrosVindo[2]+= (int) (Math.random()*FLUXO_AV_3); //rua3
+//		System.out.println("Acabou? 1 e 2 " + (cruzamento1.acabou == true) +  " " +  (cruzamento2.acabou == false) );
+//		System.out.println("Acabou? 1 + 2 " + ((cruzamento1.acabou == true) &&  (cruzamento2.acabou == false)) );
+		if ( (cruzamento1.acabou == true) &&  (cruzamento2.acabou == true) )
+		{
+			double peso = 0.0;
+			
+			carrosVindo[0]+= (int) (Math.random()*FLUXO_AV_1); //av1
+			carrosVindo[1]+= (int) (Math.random()*FLUXO_AV_2); //rua2    
+			carrosVindo[2]+= (int) (Math.random()*FLUXO_AV_3); //rua3
 
-	  
-	  if (carrosVindo[1] > carrosVindo[2])
-	  {
-		    peso = (double) (carrosVindo[0]);
-		    peso /= (double) (carrosVindo[0] + carrosVindo[1]);
-	  }
-	  else
-	  {
-		    peso = (double) carrosVindo[0];
-		    peso /= (double)(carrosVindo[2] + carrosVindo[0]);
-	  }	
-	  
-	  printStatus ( (1 - peso), (peso), (peso));
+		  
+		    if (carrosVindo[1] > carrosVindo[2])
+		    {
+		    	peso = (double) (carrosVindo[0]);
+			    peso /= (double) (carrosVindo[0] + carrosVindo[1]);
+		    }
+		    else
+		    {
+			    peso = (double) carrosVindo[0];
+			    peso /= (double)(carrosVindo[2] + carrosVindo[0]);
+		    }	
+		    
+		    printStatus ( (1 - peso), (peso), (peso));
+		    cruzamento1.acabou = false;
+		    cruzamento2.acabou = false;
+		}
 	}
 	
 	private static void printStatus (double v1, double v2, double v3)

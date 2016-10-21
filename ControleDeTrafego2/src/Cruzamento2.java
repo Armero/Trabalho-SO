@@ -4,6 +4,7 @@ public class Cruzamento2 {
 	private static  Semaphore 		semaforo2 		= new Semaphore(2);
 	private static boolean[] 		vez				= new boolean[3];
 	private static int				idUltimo 		= 0;
+	public  boolean					acabou			= true;
 	
 	synchronized public boolean getCruzamento( String idAvenida, int idNum )
 	{	
@@ -28,7 +29,7 @@ public class Cruzamento2 {
 		return (true);
 	}
 	
-	synchronized public void liberaSemaforo( int idNum )
+	public boolean liberaSemaforo( int idNum )
 	{
 		if ( (idNum - 1) == idUltimo)
 		{
@@ -39,9 +40,12 @@ public class Cruzamento2 {
 			{
 				vez[0] = false;
 				vez[2] = false;
+				acabou = true;
 			}
 			
 			semaforo2.release();
+			return (true);
 		}
+		return (false);
 	}
 }
