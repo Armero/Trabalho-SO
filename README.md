@@ -1,1 +1,1 @@
-# Trabalho-SO
+A primeira pasta contém o programa que é um "programão" mascarado. A segunda pasta contém o programa que eu acho que está certo mesmo. Para testar, basta baixar a pasta, criar um projeto no eclipse e importar os arquivos .java para que o eclipse crie o executável.
