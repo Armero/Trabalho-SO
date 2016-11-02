@@ -1,18 +1,12 @@
 public class Processo1 extends Thread{
-//	private boolean controle1 = false;
-//	private boolean controle2 = false;
 	private static boolean parouNoMeio = false;
 	
 	public void run ()
 	{
 		while (true)
 		{
-			
-//			while( !(controle1 = ControlePrincipal.cruzamento1.getCruzamento("Avenida1", 1)) );
-//			while( !(controle2 = ControlePrincipal.cruzamento2.getCruzamento("Avenida1", 1)) );
 			try 
 			{
-				Thread.sleep(ControlePrincipal.TEMPO_REINICIO_THREADS);
 				if  ( ((ControlePrincipal.cruzamento1.getCruzamento("Avenida1", 1) == true) 
 						&& (ControlePrincipal.cruzamento2.getCruzamento("Avenida1", 1) == true)) 
 					   || (parouNoMeio == true ) )
@@ -41,6 +35,7 @@ public class Processo1 extends Thread{
 						&&	(ControlePrincipal.cruzamento2.liberaSemaforo(1) == true) )
 							parouNoMeio = false;
 
+					Thread.sleep((int) (Math.random() * ControlePrincipal.TEMPO_PROCESSO1));
 				}
 			}
 			catch (InterruptedException e) 
